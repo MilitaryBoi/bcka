@@ -36,7 +36,7 @@
     opacity: 0.4;
   }
 
-  /* HEADER */
+  /* ── HEADER ── */
   header { background: var(--yolk); padding: 0; position: relative; overflow: hidden; border-bottom: 4px solid var(--dark); }
   header::before { content: ''; position: absolute; top: -60px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: var(--burnt); opacity: 0.3; }
   header::after { content: ''; position: absolute; bottom: -40px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: var(--rust); opacity: 0.15; }
@@ -46,13 +46,13 @@
   header h1 span { font-style: italic; color: var(--rust); }
   header .tagline { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(16px, 2.5vw, 22px); color: var(--mid); margin-top: 18px; animation: fadeDown 0.6s 0.2s ease both; }
 
-  /* MARQUEE */
+  /* ── MARQUEE ── */
   .marquee-strip { background: var(--burnt); border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark); padding: 12px 0; overflow: hidden; white-space: nowrap; }
   .marquee-track { display: inline-block; animation: marquee 18s linear infinite; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: white; }
   .marquee-track span { margin: 0 36px; }
   .marquee-track span.divider { opacity: 0.5; }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero { background: var(--dark); color: var(--cream); padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; overflow: hidden; }
   .hero::before { content: '🥚'; position: absolute; font-size: 220px; right: -20px; bottom: -30px; opacity: 0.07; pointer-events: none; }
   .hero-text { display: flex; flex-direction: column; gap: 28px; animation: fadeRight 0.7s 0.3s ease both; }
@@ -60,24 +60,26 @@
   .hero h2 em { font-style: italic; color: var(--yolk); }
   .hero p { font-size: 17px; line-height: 1.7; color: #c9b99a; max-width: 380px; }
   .hero-img { animation: fadeLeft 0.7s 0.4s ease both; display: flex; justify-content: center; align-items: center; }
-  .hero-img img { width: 100%; max-width: 340px; border-radius: 16px; border: 3px solid #2e1e08; box-shadow: 8px 8px 0 var(--burnt), 14px 14px 0 #2e1e08; display: block; transition: transform 0.3s ease; }
+  .hero-img img { width: 100%;  max-width: 480px; max-height: 480px; object-fit: contain; border-radius: 16px; border: 3px solid #2e1e08; box-shadow: 8px 8px 0 var(--burnt), 14px 14px 0 #2e1e08; display: block; transition: transform 0.3s ease; }
   .hero-img img:hover { transform: rotate(-2deg) scale(1.03); }
   #bag-svg { width: 100%; max-width: 340px; border-radius: 16px; border: 3px solid #2e1e08; box-shadow: 8px 8px 0 var(--burnt), 14px 14px 0 #2e1e08; transition: transform 0.3s ease; background: #FDE8C2; cursor: pointer; }
   #bag-svg:hover { transform: rotate(-2deg) scale(1.03); }
 
-  /* SOUND STATUS */
+  /* ── SOUND STATUS ── */
   .sound-status { font-size: 12px; color: #c9b99a; display: flex; align-items: center; gap: 8px; }
   .sound-dot { width: 8px; height: 8px; border-radius: 50%; background: #5c4a30; transition: background 0.3s ease; flex-shrink: 0; }
   .sound-dot.active { background: var(--yolk); box-shadow: 0 0 8px var(--yolk); }
 
-  /* BUTTONS */
+  /* ── BUTTONS ── */
   .btn { display: inline-block; background: var(--yolk); color: var(--dark); border: 3px solid var(--dark); padding: 16px 36px; font-family: 'Instrument Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; border-radius: 100px; text-transform: uppercase; box-shadow: 4px 4px 0 var(--dark); transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; }
   .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); background: #ffe066; }
   .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--dark); }
   .btn-dark { background: var(--rust); color: white; box-shadow: 4px 4px 0 var(--dark); }
   .btn-dark:hover { background: #e84040; box-shadow: 6px 6px 0 var(--dark); }
+  .btn-outline { background: transparent; color: var(--cream); border-color: #3a2608; box-shadow: 4px 4px 0 #3a2608; }
+  .btn-outline:hover { background: #2a1800; box-shadow: 6px 6px 0 #3a2608; }
 
-  /* STATS */
+  /* ── STATS ── */
   .stats { background: var(--feather); border-top: 4px solid var(--dark); border-bottom: 4px solid var(--dark); padding: 80px 40px; position: relative; overflow: hidden; }
   .stats::after { content: '🐔🐔🐔'; position: absolute; right: 30px; top: 50%; transform: translateY(-50%); font-size: 60px; letter-spacing: -10px; opacity: 0.12; pointer-events: none; }
   .stats-inner, .reviews-inner, .quiz-inner { max-width: 860px; margin: 0 auto; }
@@ -92,7 +94,7 @@
   .stat-desc { font-size: 14px; color: var(--mid); line-height: 1.5; font-weight: 500; }
   .footnote { font-size: 11px; color: #999; font-style: italic; margin-top: 12px; }
 
-  /* REVIEWS */
+  /* ── REVIEWS ── */
   .reviews { padding: 80px 40px; background: var(--cream); }
   .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
   .review-card { background: white; border: 2px solid var(--dark); border-radius: 16px; padding: 30px 26px; box-shadow: 4px 4px 0 var(--dark); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; gap: 16px; }
@@ -103,7 +105,7 @@
   .review-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.55; flex: 1; }
   .reviewer { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
 
-  /* QUIZ */
+  /* ── QUIZ ── */
   .quiz { background: var(--dark); color: var(--cream); padding: 90px 40px; position: relative; overflow: hidden; border-top: 4px solid var(--burnt); border-bottom: 4px solid var(--burnt); }
   .quiz::before { content: '?'; position: absolute; right: -20px; top: -40px; font-family: 'Playfair Display', serif; font-size: 400px; font-weight: 900; color: white; opacity: 0.03; line-height: 1; pointer-events: none; }
   .quiz .section-label { color: var(--yolk); }
@@ -120,15 +122,13 @@
   .quiz-q-text { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 28px); font-weight: 700; line-height: 1.3; color: var(--cream); }
   .quiz-q-sub { font-size: 14px; color: #c9b99a; margin-top: -16px; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .quiz-option { background: #2a1800; border: 2px solid #3a2608; border-radius: 12px; padding: 18px 20px; cursor: pointer; text-align: left; color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 14px; line-height: 1.5; transition: all 0.18s ease; position: relative; overflow: hidden; display: flex; align-items: flex-start; gap: 0; }
+  .quiz-option { background: #2a1800; border: 2px solid #3a2608; border-radius: 12px; padding: 18px 20px; cursor: pointer; text-align: left; color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 14px; line-height: 1.5; transition: all 0.18s ease; position: relative; overflow: hidden; display: flex; align-items: flex-start; }
   .quiz-option::before { content: ''; position: absolute; inset: 0; background: var(--yolk); transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease; z-index: 0; }
   .quiz-option:hover::before { transform: scaleX(1); }
   .quiz-option:hover { color: var(--dark); border-color: var(--yolk); }
   .quiz-option span { position: relative; z-index: 1; }
   .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #3a2608; font-size: 11px; font-weight: 700; margin-right: 10px; transition: background 0.18s ease; flex-shrink: 0; margin-top: 1px; }
   .quiz-option:hover .opt-letter { background: var(--burnt); color: white; }
-
-  /* QUIZ RESULT */
   .quiz-result { display: none; flex-direction: column; gap: 28px; animation: fadeDown 0.5s ease both; }
   .quiz-result.active { display: flex; }
   .result-badge { display: inline-flex; align-items: center; gap: 14px; background: var(--yolk); color: var(--dark); border: 3px solid var(--dark); border-radius: 100px; padding: 10px 24px 10px 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; width: fit-content; }
@@ -140,7 +140,7 @@
   .quiz-retake { margin-top: 8px; font-size: 13px; color: #5c4a30; cursor: pointer; text-decoration: underline; background: none; border: none; font-family: 'Instrument Sans', sans-serif; transition: color 0.2s; }
   .quiz-retake:hover { color: var(--yolk); }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer { background: var(--dark); color: var(--cream); padding: 80px 40px 50px; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--burnt); }
   footer::before { content: '🐔'; position: absolute; font-size: 300px; top: -40px; left: 50%; transform: translateX(-50%); opacity: 0.04; pointer-events: none; line-height: 1; }
   .footer-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 28px; }
@@ -149,12 +149,226 @@
   footer .sub { font-size: 15px; color: #c9b99a; max-width: 360px; line-height: 1.6; }
   .footer-copy { font-size: 12px; color: #5c4a30; margin-top: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
 
-  /* ANIMATIONS */
+  /* ══════════════════════════════════════════
+     PURCHASE OVERLAY
+  ══════════════════════════════════════════ */
+  .purchase-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: stretch;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .purchase-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Left panel — form */
+  .purchase-left {
+    background: var(--cream);
+    width: 55%;
+    overflow-y: auto;
+    padding: 52px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    transform: translateX(-40px);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+  }
+  .purchase-overlay.open .purchase-left { transform: translateX(0); }
+
+  /* Right panel — order summary */
+  .purchase-right {
+    background: var(--dark);
+    color: var(--cream);
+    flex: 1;
+    overflow-y: auto;
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transform: translateX(40px);
+    transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+    border-left: 4px solid var(--burnt);
+  }
+  .purchase-overlay.open .purchase-right { transform: translateX(0); }
+
+  .purchase-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--mid);
+    z-index: 10001;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .purchase-close:hover { color: var(--rust); transform: rotate(90deg); }
+
+  .purchase-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burnt); margin-bottom: -20px; }
+  .purchase-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 900; line-height: 1.05; }
+  .purchase-title span { font-style: italic; color: var(--rust); }
+
+  /* Form fields */
+  .form-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); border-bottom: 1.5px solid #e0d0b4; padding-bottom: 10px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; color: var(--mid); }
+  .form-group input, .form-group select {
+    background: white;
+    border: 2px solid #e0d0b4;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--burnt); box-shadow: 0 0 0 3px rgba(232,101,26,0.15); }
+  .form-group input::placeholder { color: #c8b898; }
+  .card-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; }
+
+  /* Fake card icons */
+  .card-icons { display: flex; gap: 8px; margin-top: 4px; }
+  .card-icon { width: 38px; height: 24px; border-radius: 4px; border: 1.5px solid #e0d0b4; background: white; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--mid); }
+
+  /* Order summary */
+  .order-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burnt); }
+  .order-item { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid #2a1800; }
+  .order-item-img { width: 72px; height: 72px; background: #2a1800; border-radius: 10px; border: 2px solid #3a2608; display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+  .order-item-info { flex: 1; }
+  .order-item-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; font-style: italic; margin-bottom: 4px; }
+  .order-item-sub { font-size: 12px; color: #8a6a40; }
+  .order-item-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--yolk); }
+  .order-line { display: flex; justify-content: space-between; font-size: 14px; color: #8a6a40; padding: 6px 0; }
+  .order-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 2px solid #3a2608; }
+  .order-total-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8a6a40; }
+  .order-total-price { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--yolk); }
+  .order-badge { display: inline-flex; align-items: center; gap: 8px; background: #2a1800; border: 1.5px solid #3a2608; border-radius: 100px; padding: 8px 16px; font-size: 12px; color: #c9b99a; margin-top: 8px; }
+
+  /* ── CONFIRMATION SCREEN ── */
+  .confirm-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .confirm-screen.open { opacity: 1; pointer-events: all; }
+
+  .confirm-inner {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    animation: confirmPop 0.5s 0.1s cubic-bezier(.34,1.56,.64,1) both;
+  }
+
+  @keyframes confirmPop {
+    from { opacity: 0; transform: scale(0.85) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .confirm-hen {
+    font-size: 90px;
+    line-height: 1;
+    animation: henWiggle 0.6s 0.4s ease both;
+  }
+  @keyframes henWiggle {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-12deg); }
+    40%  { transform: rotate(12deg); }
+    60%  { transform: rotate(-8deg); }
+    80%  { transform: rotate(6deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .confirm-badge {
+    background: #1a3a00;
+    border: 2px solid #2d6600;
+    color: #6eff6e;
+    border-radius: 100px;
+    padding: 8px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--cream);
+  }
+  .confirm-title span { color: var(--yolk); font-style: italic; }
+
+  .confirm-order-id {
+    font-size: 12px;
+    color: #5c4a30;
+    letter-spacing: 0.1em;
+    font-family: monospace;
+  }
+
+  .confirm-details {
+    background: #1a0e00;
+    border: 2px solid #3a2608;
+    border-radius: 16px;
+    padding: 28px 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+  .confirm-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; }
+  .confirm-row-label { color: #8a6a40; font-weight: 500; }
+  .confirm-row-value { color: var(--cream); font-weight: 600; text-align: right; max-width: 60%; }
+  .confirm-row-value.funny { color: var(--yolk); font-family: 'DM Serif Display', serif; font-style: italic; font-size: 15px; }
+  .confirm-row-value.price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--yolk); }
+  .confirm-divider { height: 1px; background: #3a2608; }
+
+  .confirm-note {
+    font-size: 14px;
+    color: #8a6a40;
+    line-height: 1.6;
+    font-style: italic;
+    max-width: 440px;
+  }
+
+  .confirm-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  /* ── ANIMATIONS ── */
   @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
   @keyframes fadeLeft { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+  @media (max-width: 860px) {
+    .purchase-left { width: 100%; padding: 40px 28px; }
+    .purchase-right { display: none; }
+    .purchase-overlay { display: block; overflow-y: auto; }
+    .purchase-left { transform: translateY(40px); }
+    .purchase-overlay.open .purchase-left { transform: translateY(0); }
+  }
   @media (max-width: 720px) {
     .hero { grid-template-columns: 1fr; padding: 60px 28px; text-align: center; }
     .hero p { max-width: none; }
@@ -167,11 +381,163 @@
     .header-inner { align-items: center; text-align: center; }
     .section-label::after { display: none; }
     .quiz-options { grid-template-columns: 1fr; }
+    .form-row, .card-row { grid-template-columns: 1fr; }
+    .confirm-details { padding: 20px; }
   }
 </style>
 </head>
 <body>
 
+<!-- ═══════ PURCHASE OVERLAY ═══════ -->
+<div class="purchase-overlay" id="purchase-overlay">
+  <button class="purchase-close" onclick="closePurchase()" title="Close">✕</button>
+
+  <!-- LEFT: Checkout form -->
+  <div class="purchase-left">
+    <div>
+      <div class="purchase-eyebrow">Checkout</div>
+      <div class="purchase-title">You're one step away from being<br><span>a chicken person.</span></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="form-section-title">Contact</div>
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" placeholder="you@totallyrealperson.com">
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="form-section-title">Delivery address</div>
+      <div class="form-row">
+        <div class="form-group"><label>First name</label><input type="text" placeholder="Beatrice"></div>
+        <div class="form-group"><label>Last name</label><input type="text" placeholder="Clucksworth"></div>
+      </div>
+      <div class="form-group"><label>Address</label><input type="text" placeholder="1 Barnyard Lane"></div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" placeholder="Henton-on-Wattle"></div>
+        <div class="form-group"><label>Postcode</label><input type="text" placeholder="EGG 1A3"></div>
+      </div>
+      <div class="form-group">
+        <label>Country</label>
+        <select>
+          <option>United Kingdom</option>
+          <option>United States</option>
+          <option>Portugal</option>
+          <option>France</option>
+          <option>The Coop (unrecognised territory)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="form-section-title">Payment</div>
+      <div class="card-icons">
+        <div class="card-icon">VISA</div>
+        <div class="card-icon" style="font-size:7px;">MSTR</div>
+        <div class="card-icon" style="font-size:7px;">AMEX</div>
+        <div class="card-icon">🥚</div>
+      </div>
+      <div class="form-group"><label>Card number</label><input type="text" placeholder="1234 5678 9012 3456"></div>
+      <div class="card-row">
+        <div class="form-group"><label>Name on card</label><input type="text" placeholder="B. Clucksworth"></div>
+        <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM/YY"></div>
+        <div class="form-group"><label>CVV</label><input type="text" placeholder="🐔"></div>
+      </div>
+    </div>
+
+    <button class="btn btn-dark" style="width:100%;justify-content:center;border-radius:12px;padding:20px;" onclick="confirmPurchase()">
+      Complete Order — £49.99
+    </button>
+
+    <p style="font-size:11px;color:#b09060;text-align:center;line-height:1.6;">
+      By completing this order you agree to receive one (1) hen-themed bag and accept full responsibility for the attention it will attract. No returns. The hen has bonded with you now.
+    </p>
+  </div>
+
+  <!-- RIGHT: Order summary -->
+  <div class="purchase-right">
+    <div class="order-eyebrow">Order Summary</div>
+
+    <div class="order-item">
+      <div class="order-item-img">🐔</div>
+      <div class="order-item-info">
+        <div class="order-item-name">The Hen Bag</div>
+        <div class="order-item-sub">Original · One Size · Free-Range Edition</div>
+        <div style="margin-top:8px;font-size:12px;color:#8a6a40;">Qty: 1 (you only need one)</div>
+      </div>
+      <div class="order-item-price">£49.99</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:4px;padding-top:8px;">
+      <div class="order-line"><span>Subtotal</span><span>£49.99</span></div>
+      <div class="order-line"><span>Shipping</span><span>Free (the hen insists)</span></div>
+      <div class="order-line"><span>Poultry tax</span><span>£0.00</span></div>
+      <div class="order-line"><span>Corn surcharge</span><span>£0.00</span></div>
+    </div>
+
+    <div class="order-total">
+      <div class="order-total-label">Total</div>
+      <div class="order-total-price">£49.99</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+      <div class="order-badge">🚚 Dispatched from a real barn</div>
+      <div class="order-badge">🔒 Secured by ChicHen Pay™</div>
+      <div class="order-badge">🐔 Hen-approved packaging</div>
+    </div>
+
+    <div style="margin-top:auto;font-size:12px;color:#5c4a30;line-height:1.7;font-style:italic;">
+      "Every Hen Bag is quality-checked by our lead hen, Gerald. Gerald takes his job very seriously."
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CONFIRMATION SCREEN ═══════ -->
+<div class="confirm-screen" id="confirm-screen">
+  <div class="confirm-inner">
+    <div class="confirm-hen" id="confirm-hen">🐔</div>
+    <div class="confirm-badge">✓ Order Confirmed</div>
+    <div class="confirm-title">The hen is<br><span>on her way.</span></div>
+    <div class="confirm-order-id" id="confirm-order-id">Order #HEN-000000</div>
+
+    <div class="confirm-details">
+      <div class="confirm-row">
+        <span class="confirm-row-label">Item</span>
+        <span class="confirm-row-value">The Hen Bag (x1)</span>
+      </div>
+      <div class="confirm-divider"></div>
+      <div class="confirm-row">
+        <span class="confirm-row-label">Total charged</span>
+        <span class="confirm-row-value price">£49.99</span>
+      </div>
+      <div class="confirm-divider"></div>
+      <div class="confirm-row">
+        <span class="confirm-row-label">Dispatched from</span>
+        <span class="confirm-row-value">Gerald's barn, somewhere rural</span>
+      </div>
+      <div class="confirm-row">
+        <span class="confirm-row-label">Carrier</span>
+        <span class="confirm-row-value">BawkEx Priority Poultry</span>
+      </div>
+      <div class="confirm-row" style="align-items:flex-start;">
+        <span class="confirm-row-label">Expected delivery</span>
+        <span class="confirm-row-value funny" id="delivery-message">Soon™</span>
+      </div>
+    </div>
+
+    <p class="confirm-note" id="confirm-note">
+      You are now officially a chicken person. A confirmation email has been sent to the void.
+    </p>
+
+    <div class="confirm-actions">
+      <button class="btn" onclick="closeConfirm()">Back to the flock</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════ MAIN SITE ═══════ -->
 <header>
   <div class="header-inner">
     <span class="header-tag">Est. This Year · Hand-Feathered</span>
@@ -212,51 +578,33 @@
       onerror="this.style.display='none'; document.getElementById('bag-svg').style.display='block';">
     <svg id="bag-svg" viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg"
       style="display:none;" aria-label="Illustrated Hen Bag" onclick="cluck()">
-      <!-- bag body -->
       <rect x="35" y="140" width="270" height="200" rx="38" fill="#C0392B"/>
-      <!-- bag sheen -->
       <ellipse cx="105" cy="175" rx="44" ry="20" fill="white" opacity="0.10"/>
-      <!-- handle base -->
       <rect x="125" y="112" width="90" height="44" rx="14" fill="#8B1A1A"/>
-      <!-- handle loop -->
       <rect x="145" y="90" width="50" height="32" rx="10" fill="#6B1010" stroke="#1A0F00" stroke-width="3"/>
-      <!-- clasp -->
       <rect x="155" y="99" width="30" height="14" rx="5" fill="#F5C842" stroke="#1A0F00" stroke-width="2"/>
       <rect x="167" y="103" width="6" height="6" rx="2" fill="#C0392B"/>
-      <!-- hen body -->
       <ellipse cx="170" cy="245" rx="65" ry="55" fill="#E8651A"/>
-      <!-- wings -->
       <ellipse cx="136" cy="252" rx="30" ry="22" fill="#C0392B" transform="rotate(-18,136,252)"/>
       <ellipse cx="204" cy="252" rx="30" ry="22" fill="#C0392B" transform="rotate(18,204,252)"/>
-      <!-- wing feather lines -->
       <path d="M120 248 Q110 235 116 222" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
       <path d="M126 256 Q112 246 116 232" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
       <path d="M220 248 Q230 235 224 222" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <!-- hen head -->
       <circle cx="170" cy="192" r="32" fill="#E8651A"/>
-      <!-- comb -->
-      <path d="M157 162 Q162 148 168 160 Q173 143 178 158 Q183 146 187 162"
-        stroke="#C0392B" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-      <!-- wattle -->
+      <path d="M157 162 Q162 148 168 160 Q173 143 178 158 Q183 146 187 162" stroke="#C0392B" stroke-width="5.5" fill="none" stroke-linecap="round"/>
       <ellipse cx="160" cy="192" rx="8" ry="11" fill="#C0392B"/>
-      <!-- eye -->
       <circle cx="179" cy="185" r="7" fill="white"/>
       <circle cx="181" cy="185" r="4" fill="#1A0F00"/>
       <circle cx="182" cy="183" r="1.5" fill="white"/>
-      <!-- beak -->
       <path d="M187 191 L200 194 L187 198 Z" fill="#F5C842"/>
-      <!-- tail feathers -->
       <path d="M235 228 Q260 204 252 232" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
       <path d="M238 236 Q265 216 254 244" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
       <path d="M235 244 Q258 230 248 255" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <!-- feet -->
       <path d="M148 338 L137 358 M148 338 L150 360 M148 338 L162 355" stroke="#F5C842" stroke-width="4" stroke-linecap="round"/>
       <path d="M192 338 L181 358 M192 338 L194 360 M192 338 L206 355" stroke="#F5C842" stroke-width="4" stroke-linecap="round"/>
-      <!-- sparkles -->
       <text x="46" y="178" font-size="18" opacity="0.55">✨</text>
       <text x="273" y="165" font-size="14" opacity="0.45">✨</text>
       <text x="55" y="308" font-size="13" opacity="0.35">🌟</text>
-      <!-- click hint -->
       <text x="170" y="372" font-size="10" text-anchor="middle" fill="#C0392B" opacity="0.6" font-family="sans-serif">tap me</text>
     </svg>
   </div>
@@ -267,18 +615,9 @@
     <div class="section-label">Peer-Reviewed Data</div>
     <h2>Scientific Facts<span style="color:var(--rust)">*</span></h2>
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">97%</div>
-        <div class="stat-desc">of people stop and stare at the Hen Bag.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">67%</div>
-        <div class="stat-desc">smile immediately upon seeing it.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">12%</div>
-        <div class="stat-desc">attempt to feed it corn. We don't judge.</div>
-      </div>
+      <div class="stat-card"><div class="stat-number">97%</div><div class="stat-desc">of people stop and stare at the Hen Bag.</div></div>
+      <div class="stat-card"><div class="stat-number">67%</div><div class="stat-desc">smile immediately upon seeing it.</div></div>
+      <div class="stat-card"><div class="stat-number">12%</div><div class="stat-desc">attempt to feed it corn. We don't judge.</div></div>
     </div>
     <p class="footnote">*Research conducted by totally real chicken scientists in a fully accredited barn.</p>
   </div>
@@ -308,7 +647,6 @@
   </div>
 </section>
 
-<!-- QUIZ -->
 <section class="quiz" id="quiz">
   <div class="quiz-inner">
     <div class="section-label">Personality Test</div>
@@ -376,7 +714,7 @@
         <div class="result-desc" id="result-desc"></div>
         <div class="result-trait-list" id="result-traits"></div>
         <div>
-          <button class="btn btn-dark" onclick="alert('Congrats! You are now officially a chicken.')">Buy The Hen Bag</button>
+          <button class="btn btn-dark" onclick="openPurchase()">Buy The Hen Bag</button>
         </div>
         <button class="quiz-retake" onclick="resetQuiz()">↩ Retake quiz</button>
       </div>
@@ -388,29 +726,29 @@
   <div class="footer-inner">
     <h2>Join The <span>Flock</span></h2>
     <p class="sub">One bag. Infinite personality. Zero apologies to people who don't get it.</p>
-    <button class="btn btn-dark" onclick="alert('Congrats! You are now officially a chicken.')">Buy The Hen Bag</button>
+    <button class="btn btn-dark" onclick="openPurchase()">Buy The Hen Bag</button>
     <p class="footer-copy">© ChicHen Industries · All rights reserved to the hens</p>
   </div>
 </footer>
 
 <script>
 // ═══════════════════════════════════════════════
-// SOUNDS
-// Drop .mp3 / .wav / .ogg files into the sounds/ folder,
-// then list their filenames in SOUND_FILES below.
+// SOUNDS — add filenames to SOUND_FILES
 // ═══════════════════════════════════════════════
 const SOUND_FILES = [
   "1.mp3",
   "2.mp3",
-    "3.mp3",
-    "4.mp3",
+  "3.mp3",
+  "4.mp3",
 ];
+
+// Which sound to play on purchase confirmation (index into SOUND_FILES, or 'random')
+const PURCHASE_SOUND = 'random';
 
 const FALLBACK_MESSAGES = [
   "Cluck!", "Bawk bawk!", "Eggcellent choice!",
   "You have pleased the chicken.", "The hen approves.",
-  "The flock has been notified.",
-  "Your chickenness level: maximum."
+  "The flock has been notified.", "Your chickenness level: maximum."
 ];
 
 let soundObjects = [];
@@ -426,46 +764,116 @@ function initSounds() {
   }
   soundObjects = SOUND_FILES.map(f => { const a = new Audio('sounds/' + f); a.preload = 'auto'; return a; });
   dot.classList.add('active');
-  label.textContent = ""; //SOUND_FILES.length + ' sound' + (SOUND_FILES.length > 1 ? 's' : '') + ' loaded 🎵';
+  label.textContent = 'If you dare...';
+}
+
+function playSound(index) {
+  if (SOUND_FILES.length === 0) return;
+  if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+  const idx = (index === 'random' || index === undefined)
+    ? Math.floor(Math.random() * SOUND_FILES.length)
+    : Math.min(index, SOUND_FILES.length - 1);
+  // Always create a fresh Audio instance so the browser treats it as a new user-gesture play
+  const a = new Audio('sounds/' + SOUND_FILES[idx]);
+  currentAudio = a;
+  a.play().catch(() => {});
 }
 
 function cluck() {
   if (soundObjects.length > 0) {
-    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
-    const s = soundObjects[Math.floor(Math.random() * soundObjects.length)];
-    currentAudio = s;
-    s.play().catch(showFallback);
-  } else { showFallback(); }
+    playSound('random');
+  } else {
+    alert(FALLBACK_MESSAGES[Math.floor(Math.random() * FALLBACK_MESSAGES.length)]);
+  }
 }
 
-function showFallback() {
-  alert(FALLBACK_MESSAGES[Math.floor(Math.random() * FALLBACK_MESSAGES.length)]);
+// ═══════════════════════════════════════════════
+// PURCHASE OVERLAY
+// ═══════════════════════════════════════════════
+function openPurchase() {
+  document.getElementById('purchase-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closePurchase() {
+  document.getElementById('purchase-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+const DELIVERY_MESSAGES = [
+  "3–5 business hens",
+  "When the hen is ready. She knows the way.",
+  "Estimated arrival: next Tuesday, assuming Gerald doesn't nap",
+  "2–4 weeks, or whenever the fox situation resolves",
+  "Approximately one full moon cycle",
+  "Before your next haircut. Probably.",
+  "7–10 clucking days",
+  "Soon™ (legally non-binding)",
+  "Whenever BawkEx gets out of the hedge",
+  "Between now and the heat death of the universe (est. 3–5 days)",
+  "The hen has been briefed. ETA: unknowable.",
+  "Delivery window: dawn to dusk. The hen chooses.",
+];
+
+const CONFIRM_NOTES = [
+  "A confirmation email has been dispatched via carrier pigeon. Please allow 3–5 days for the pigeon to arrive.",
+  "Gerald has personally blessed your order. He sneezed on it, which is considered good luck in the barn.",
+  "Your bag is currently strutting toward you. Please do not startle it.",
+  "The hen is aware of your address. She has always been aware.",
+  "Your order number has been scratched into the dirt floor of the fulfilment barn for safekeeping.",
+];
+
+function confirmPurchase() {
+  // Play sound FIRST — must be synchronous within the user gesture
+  playSound(PURCHASE_SOUND);
+
+  // Generate fake order ID
+  const orderId = 'HEN-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  document.getElementById('confirm-order-id').textContent = 'Order #' + orderId;
+
+  // Pick random delivery message
+  const delivery = DELIVERY_MESSAGES[Math.floor(Math.random() * DELIVERY_MESSAGES.length)];
+  document.getElementById('delivery-message').textContent = delivery;
+
+  // Pick random note
+  const note = CONFIRM_NOTES[Math.floor(Math.random() * CONFIRM_NOTES.length)];
+  document.getElementById('confirm-note').textContent = note;
+
+  // Close purchase overlay, show confirm
+  closePurchase();
+  document.getElementById('confirm-screen').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeConfirm() {
+  document.getElementById('confirm-screen').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close overlay on backdrop click
+document.getElementById('purchase-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closePurchase();
+});
+document.getElementById('confirm-screen').addEventListener('click', function(e) {
+  if (e.target === this) closeConfirm();
+});
 
 // ═══════════════════════════════════════════════
 // QUIZ
 // ═══════════════════════════════════════════════
 const RESULTS = {
-  F: {
-    emoji: '👜', label: 'The Fashion Hen', title: 'The Fashion Hen',
+  F: { emoji: '👜', label: 'The Fashion Hen', title: 'The Fashion Hen',
     desc: "You are the most stylish bird in the barn. Every outfit is considered. Every accessory intentional. The Hen Bag isn't a quirky purchase for you — it's a coordinated statement. You probably have a colour-coded wardrobe and strong opinions about hem lengths.",
-    traits: ['Exquisite taste', 'Accessory collector', 'Runway-ready', 'Sends "is this too much?" texts but already knows the answer is no']
-  },
-  C: {
-    emoji: '🌀', label: 'The Chaotic Rooster', title: 'The Chaotic Rooster',
+    traits: ['Exquisite taste', 'Accessory collector', 'Runway-ready', 'Sends "is this too much?" texts but already knows the answer is no'] },
+  C: { emoji: '🌀', label: 'The Chaotic Rooster', title: 'The Chaotic Rooster',
     desc: "You are pure barnyard energy. Loud, unpredictable, deeply committed to chaos. You bought the Hen Bag at 11pm on a Tuesday and told no one. Your friends are not surprised. You have never completed a thought in a straight line and the universe loves you for it.",
-    traits: ['Unhinged in the best way', 'Impulse buyer', 'Main character syndrome (deserved)', 'Does not read instructions']
-  },
-  R: {
-    emoji: '🌿', label: 'The Free-Range Rebel', title: 'The Free-Range Rebel',
+    traits: ['Unhinged in the best way', 'Impulse buyer', 'Main character syndrome (deserved)', 'Does not read instructions'] },
+  R: { emoji: '🌿', label: 'The Free-Range Rebel', title: 'The Free-Range Rebel',
     desc: "You refuse to be confined. Rules are suggestions. Fences are aesthetic choices. You carry the Hen Bag because it's real, it's weird, and it doesn't ask anything of you. You probably own at least one piece of clothing that was a curtain.",
-    traits: ['Unbothered', 'Anti-trend trendsetter', 'Owns a compost bin', 'Has opinions about foraging']
-  },
-  E: {
-    emoji: '📸', label: 'The Eggfluencer', title: 'The Eggfluencer',
+    traits: ['Unbothered', 'Anti-trend trendsetter', 'Owns a compost bin', 'Has opinions about foraging'] },
+  E: { emoji: '📸', label: 'The Eggfluencer', title: 'The Eggfluencer',
     desc: "Content is your calling. You didn't just buy the Hen Bag — you conceptualised a three-part series around it. Your lighting is always good. Your captions are either profound or completely unhinged, and your followers love both equally. The hen approves of your metrics.",
-    traits: ['Chronically online', 'Golden hour connoisseur', 'Batch-shoots content', 'Replies to comments in chicken puns']
-  }
+    traits: ['Chronically online', 'Golden hour connoisseur', 'Batch-shoots content', 'Replies to comments in chicken puns'] }
 };
 
 let scores = {F:0, C:0, R:0, E:0};
@@ -481,9 +889,7 @@ function answer(qIndex, type) {
   if (currentQ < TOTAL) {
     document.getElementById('q' + currentQ).classList.add('active');
     document.getElementById('prog-' + currentQ).classList.add('active');
-  } else {
-    showResult();
-  }
+  } else { showResult(); }
 }
 
 function showResult() {
@@ -505,7 +911,7 @@ function resetQuiz() {
   currentQ = 0;
   document.getElementById('quiz-result').classList.remove('active');
   for (let i = 0; i < TOTAL; i++) {
-    const q = document.getElementById('q'+i); q.classList.remove('active');
+    document.getElementById('q'+i).classList.remove('active');
     const d = document.getElementById('prog-'+i); d.classList.remove('done','active');
   }
   document.getElementById('q0').classList.add('active');
