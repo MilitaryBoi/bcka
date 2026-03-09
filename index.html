@@ -1,73 +1,518 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Hen Bag</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yolk: #F5C842;
+    --burnt: #E8651A;
+    --rust: #C0392B;
+    --cream: #FAF3E0;
+    --feather: #FDE8C2;
+    --dark: #1A0F00;
+    --mid: #5C3317;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'Instrument Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='26'%3E%F0%9F%90%94%3C/text%3E%3C/svg%3E") 16 16, auto;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
 
+  /* HEADER */
+  header { background: var(--yolk); padding: 0; position: relative; overflow: hidden; border-bottom: 4px solid var(--dark); }
+  header::before { content: ''; position: absolute; top: -60px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: var(--burnt); opacity: 0.3; }
+  header::after { content: ''; position: absolute; bottom: -40px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: var(--rust); opacity: 0.15; }
+  .header-inner { max-width: 900px; margin: 0 auto; padding: 60px 40px 52px; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; }
+  .header-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; background: var(--dark); color: var(--yolk); padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; display: inline-block; animation: fadeDown 0.6s ease both; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(54px, 10vw, 100px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; color: var(--dark); animation: fadeDown 0.6s 0.1s ease both; }
+  header h1 span { font-style: italic; color: var(--rust); }
+  header .tagline { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(16px, 2.5vw, 22px); color: var(--mid); margin-top: 18px; animation: fadeDown 0.6s 0.2s ease both; }
+
+  /* MARQUEE */
+  .marquee-strip { background: var(--burnt); border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark); padding: 12px 0; overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-block; animation: marquee 18s linear infinite; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: white; }
+  .marquee-track span { margin: 0 36px; }
+  .marquee-track span.divider { opacity: 0.5; }
+
+  /* HERO */
+  .hero { background: var(--dark); color: var(--cream); padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; overflow: hidden; }
+  .hero::before { content: '🥚'; position: absolute; font-size: 220px; right: -20px; bottom: -30px; opacity: 0.07; pointer-events: none; }
+  .hero-text { display: flex; flex-direction: column; gap: 28px; animation: fadeRight 0.7s 0.3s ease both; }
+  .hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 52px); font-weight: 700; line-height: 1.1; }
+  .hero h2 em { font-style: italic; color: var(--yolk); }
+  .hero p { font-size: 17px; line-height: 1.7; color: #c9b99a; max-width: 380px; }
+  .hero-img { animation: fadeLeft 0.7s 0.4s ease both; display: flex; justify-content: center; align-items: center; }
+  .hero-img img { width: 100%; max-width: 340px; border-radius: 16px; border: 3px solid #2e1e08; box-shadow: 8px 8px 0 var(--burnt), 14px 14px 0 #2e1e08; display: block; transition: transform 0.3s ease; }
+  .hero-img img:hover { transform: rotate(-2deg) scale(1.03); }
+  #bag-svg { width: 100%; max-width: 340px; border-radius: 16px; border: 3px solid #2e1e08; box-shadow: 8px 8px 0 var(--burnt), 14px 14px 0 #2e1e08; transition: transform 0.3s ease; background: #FDE8C2; cursor: pointer; }
+  #bag-svg:hover { transform: rotate(-2deg) scale(1.03); }
+
+  /* SOUND STATUS */
+  .sound-status { font-size: 12px; color: #c9b99a; display: flex; align-items: center; gap: 8px; }
+  .sound-dot { width: 8px; height: 8px; border-radius: 50%; background: #5c4a30; transition: background 0.3s ease; flex-shrink: 0; }
+  .sound-dot.active { background: var(--yolk); box-shadow: 0 0 8px var(--yolk); }
+
+  /* BUTTONS */
+  .btn { display: inline-block; background: var(--yolk); color: var(--dark); border: 3px solid var(--dark); padding: 16px 36px; font-family: 'Instrument Sans', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; border-radius: 100px; text-transform: uppercase; box-shadow: 4px 4px 0 var(--dark); transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); background: #ffe066; }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--dark); }
+  .btn-dark { background: var(--rust); color: white; box-shadow: 4px 4px 0 var(--dark); }
+  .btn-dark:hover { background: #e84040; box-shadow: 6px 6px 0 var(--dark); }
+
+  /* STATS */
+  .stats { background: var(--feather); border-top: 4px solid var(--dark); border-bottom: 4px solid var(--dark); padding: 80px 40px; position: relative; overflow: hidden; }
+  .stats::after { content: '🐔🐔🐔'; position: absolute; right: 30px; top: 50%; transform: translateY(-50%); font-size: 60px; letter-spacing: -10px; opacity: 0.12; pointer-events: none; }
+  .stats-inner, .reviews-inner, .quiz-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burnt); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1.5px; background: var(--burnt); opacity: 0.4; max-width: 80px; }
+  .stats h2, .reviews h2, .quiz h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 48px; line-height: 1.15; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; border: 2px solid var(--dark); border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+  .stat-card { background: white; padding: 36px 28px; border-right: 2px solid var(--dark); transition: background 0.2s ease; }
+  .stat-card:last-child { border-right: none; }
+  .stat-card:hover { background: var(--yolk); }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: var(--rust); line-height: 1; margin-bottom: 10px; }
+  .stat-desc { font-size: 14px; color: var(--mid); line-height: 1.5; font-weight: 500; }
+  .footnote { font-size: 11px; color: #999; font-style: italic; margin-top: 12px; }
+
+  /* REVIEWS */
+  .reviews { padding: 80px 40px; background: var(--cream); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .review-card { background: white; border: 2px solid var(--dark); border-radius: 16px; padding: 30px 26px; box-shadow: 4px 4px 0 var(--dark); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; gap: 16px; }
+  .review-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--dark); }
+  .review-card:nth-child(2) { margin-top: 24px; background: var(--dark); color: var(--cream); box-shadow: 4px 4px 0 var(--burnt); }
+  .review-card:nth-child(2):hover { box-shadow: 7px 7px 0 var(--burnt); }
+  .stars { font-size: 14px; letter-spacing: 1px; }
+  .review-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; line-height: 1.55; flex: 1; }
+  .reviewer { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
+
+  /* QUIZ */
+  .quiz { background: var(--dark); color: var(--cream); padding: 90px 40px; position: relative; overflow: hidden; border-top: 4px solid var(--burnt); border-bottom: 4px solid var(--burnt); }
+  .quiz::before { content: '?'; position: absolute; right: -20px; top: -40px; font-family: 'Playfair Display', serif; font-size: 400px; font-weight: 900; color: white; opacity: 0.03; line-height: 1; pointer-events: none; }
+  .quiz .section-label { color: var(--yolk); }
+  .quiz .section-label::after { background: var(--yolk); }
+  .quiz h2 { color: var(--cream); }
+  .quiz h2 span { color: var(--yolk); font-style: italic; }
+  .quiz-progress { display: flex; gap: 6px; margin-bottom: 36px; }
+  .quiz-progress-dot { height: 4px; border-radius: 2px; background: #3a2608; flex: 1; transition: background 0.4s ease; }
+  .quiz-progress-dot.done { background: var(--yolk); }
+  .quiz-progress-dot.active { background: var(--burnt); }
+  .quiz-question-wrap { min-height: 300px; position: relative; }
+  .quiz-question { display: none; flex-direction: column; gap: 24px; animation: fadeDown 0.4s ease both; }
+  .quiz-question.active { display: flex; }
+  .quiz-q-text { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 28px); font-weight: 700; line-height: 1.3; color: var(--cream); }
+  .quiz-q-sub { font-size: 14px; color: #c9b99a; margin-top: -16px; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-option { background: #2a1800; border: 2px solid #3a2608; border-radius: 12px; padding: 18px 20px; cursor: pointer; text-align: left; color: var(--cream); font-family: 'Instrument Sans', sans-serif; font-size: 14px; line-height: 1.5; transition: all 0.18s ease; position: relative; overflow: hidden; display: flex; align-items: flex-start; gap: 0; }
+  .quiz-option::before { content: ''; position: absolute; inset: 0; background: var(--yolk); transform: scaleX(0); transform-origin: left; transition: transform 0.2s ease; z-index: 0; }
+  .quiz-option:hover::before { transform: scaleX(1); }
+  .quiz-option:hover { color: var(--dark); border-color: var(--yolk); }
+  .quiz-option span { position: relative; z-index: 1; }
+  .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #3a2608; font-size: 11px; font-weight: 700; margin-right: 10px; transition: background 0.18s ease; flex-shrink: 0; margin-top: 1px; }
+  .quiz-option:hover .opt-letter { background: var(--burnt); color: white; }
+
+  /* QUIZ RESULT */
+  .quiz-result { display: none; flex-direction: column; gap: 28px; animation: fadeDown 0.5s ease both; }
+  .quiz-result.active { display: flex; }
+  .result-badge { display: inline-flex; align-items: center; gap: 14px; background: var(--yolk); color: var(--dark); border: 3px solid var(--dark); border-radius: 100px; padding: 10px 24px 10px 12px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; width: fit-content; }
+  .result-emoji { font-size: 28px; line-height: 1; }
+  .result-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 6vw, 60px); font-weight: 900; font-style: italic; line-height: 1.0; color: var(--yolk); }
+  .result-desc { font-size: 17px; color: #c9b99a; line-height: 1.7; max-width: 520px; }
+  .result-trait-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: -8px; }
+  .result-trait { background: #2a1800; border: 1.5px solid #3a2608; border-radius: 100px; padding: 6px 16px; font-size: 13px; color: #e8c98a; font-weight: 500; }
+  .quiz-retake { margin-top: 8px; font-size: 13px; color: #5c4a30; cursor: pointer; text-decoration: underline; background: none; border: none; font-family: 'Instrument Sans', sans-serif; transition: color 0.2s; }
+  .quiz-retake:hover { color: var(--yolk); }
+
+  /* FOOTER */
+  footer { background: var(--dark); color: var(--cream); padding: 80px 40px 50px; text-align: center; position: relative; overflow: hidden; border-top: 4px solid var(--burnt); }
+  footer::before { content: '🐔'; position: absolute; font-size: 300px; top: -40px; left: 50%; transform: translateX(-50%); opacity: 0.04; pointer-events: none; line-height: 1; }
+  .footer-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+  footer h2 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 62px); font-weight: 900; line-height: 1.0; font-style: italic; }
+  footer h2 span { color: var(--yolk); font-style: normal; }
+  footer .sub { font-size: 15px; color: #c9b99a; max-width: 360px; line-height: 1.6; }
+  .footer-copy { font-size: 12px; color: #5c4a30; margin-top: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes fadeLeft { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 28px; text-align: center; }
+    .hero p { max-width: none; }
+    .hero-text { align-items: center; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-card { border-right: none; border-bottom: 2px solid var(--dark); }
+    .stat-card:last-child { border-bottom: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .review-card:nth-child(2) { margin-top: 0; }
+    .header-inner { align-items: center; text-align: center; }
+    .section-label::after { display: none; }
+    .quiz-options { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
 <body>
 
 <header>
-<h1>🐔 The Hen Bag</h1>
-<p>The world's most egg-straordinary handbag</p>
+  <div class="header-inner">
+    <span class="header-tag">Est. This Year · Hand-Feathered</span>
+    <h1>The <span>Hen</span> Bag</h1>
+    <p class="tagline">The world's most egg-straordinary handbag.</p>
+  </div>
 </header>
 
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Free-Range Fashion</span><span class="divider">✦</span>
+    <span>Certified Cluck-Worthy</span><span class="divider">✦</span>
+    <span>As Seen On Hens</span><span class="divider">✦</span>
+    <span>100% Real Chicken Energy</span><span class="divider">✦</span>
+    <span>The Original Poultry Purse</span><span class="divider">✦</span>
+    <span>Free-Range Fashion</span><span class="divider">✦</span>
+    <span>Certified Cluck-Worthy</span><span class="divider">✦</span>
+    <span>As Seen On Hens</span><span class="divider">✦</span>
+    <span>100% Real Chicken Energy</span><span class="divider">✦</span>
+    <span>The Original Poultry Purse</span><span class="divider">✦</span>
+  </div>
+</div>
+
 <section class="hero">
-
-<img src="bag.jpg" alt="Hen Bag">
-
-<h2>Carry Confidence. Carry Chickenness.</h2>
-
-<button onclick="cluck()">Cluck Around</button>
-
+  <div class="hero-text">
+    <h2>Carry Confidence.<br><em>Carry Chickenness.</em></h2>
+    <p>A statement piece for those who dare to walk on the wild side — the barnyard wild side. Strutting is encouraged.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+      <button class="btn" id="cluck-btn" onclick="cluck()">Cluck Around &amp; Find Out</button>
+      <div class="sound-status">
+        <div class="sound-dot" id="sound-dot"></div>
+        <span id="sound-label">Loading sounds…</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="./bag.jpeg" alt="The Hen Bag" id="bag-img"
+      onerror="this.style.display='none'; document.getElementById('bag-svg').style.display='block';">
+    <svg id="bag-svg" viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg"
+      style="display:none;" aria-label="Illustrated Hen Bag" onclick="cluck()">
+      <!-- bag body -->
+      <rect x="35" y="140" width="270" height="200" rx="38" fill="#C0392B"/>
+      <!-- bag sheen -->
+      <ellipse cx="105" cy="175" rx="44" ry="20" fill="white" opacity="0.10"/>
+      <!-- handle base -->
+      <rect x="125" y="112" width="90" height="44" rx="14" fill="#8B1A1A"/>
+      <!-- handle loop -->
+      <rect x="145" y="90" width="50" height="32" rx="10" fill="#6B1010" stroke="#1A0F00" stroke-width="3"/>
+      <!-- clasp -->
+      <rect x="155" y="99" width="30" height="14" rx="5" fill="#F5C842" stroke="#1A0F00" stroke-width="2"/>
+      <rect x="167" y="103" width="6" height="6" rx="2" fill="#C0392B"/>
+      <!-- hen body -->
+      <ellipse cx="170" cy="245" rx="65" ry="55" fill="#E8651A"/>
+      <!-- wings -->
+      <ellipse cx="136" cy="252" rx="30" ry="22" fill="#C0392B" transform="rotate(-18,136,252)"/>
+      <ellipse cx="204" cy="252" rx="30" ry="22" fill="#C0392B" transform="rotate(18,204,252)"/>
+      <!-- wing feather lines -->
+      <path d="M120 248 Q110 235 116 222" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M126 256 Q112 246 116 232" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M220 248 Q230 235 224 222" stroke="#E8651A" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- hen head -->
+      <circle cx="170" cy="192" r="32" fill="#E8651A"/>
+      <!-- comb -->
+      <path d="M157 162 Q162 148 168 160 Q173 143 178 158 Q183 146 187 162"
+        stroke="#C0392B" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+      <!-- wattle -->
+      <ellipse cx="160" cy="192" rx="8" ry="11" fill="#C0392B"/>
+      <!-- eye -->
+      <circle cx="179" cy="185" r="7" fill="white"/>
+      <circle cx="181" cy="185" r="4" fill="#1A0F00"/>
+      <circle cx="182" cy="183" r="1.5" fill="white"/>
+      <!-- beak -->
+      <path d="M187 191 L200 194 L187 198 Z" fill="#F5C842"/>
+      <!-- tail feathers -->
+      <path d="M235 228 Q260 204 252 232" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M238 236 Q265 216 254 244" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M235 244 Q258 230 248 255" stroke="#8B1A1A" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- feet -->
+      <path d="M148 338 L137 358 M148 338 L150 360 M148 338 L162 355" stroke="#F5C842" stroke-width="4" stroke-linecap="round"/>
+      <path d="M192 338 L181 358 M192 338 L194 360 M192 338 L206 355" stroke="#F5C842" stroke-width="4" stroke-linecap="round"/>
+      <!-- sparkles -->
+      <text x="46" y="178" font-size="18" opacity="0.55">✨</text>
+      <text x="273" y="165" font-size="14" opacity="0.45">✨</text>
+      <text x="55" y="308" font-size="13" opacity="0.35">🌟</text>
+      <!-- click hint -->
+      <text x="170" y="372" font-size="10" text-anchor="middle" fill="#C0392B" opacity="0.6" font-family="sans-serif">tap me</text>
+    </svg>
+  </div>
 </section>
 
-<section>
-
-<h2>Scientific Facts*</h2>
-
-<ul>
-<li>97% of people stare at the Hen Bag.</li>
-<li>64% smile immediately.</li>
-<li>12% attempt to feed it corn.</li>
-</ul>
-
-<p class="small">*Research conducted by totally real chicken scientists.</p>
-
+<section class="stats">
+  <div class="stats-inner">
+    <div class="section-label">Peer-Reviewed Data</div>
+    <h2>Scientific Facts<span style="color:var(--rust)">*</span></h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">97%</div>
+        <div class="stat-desc">of people stop and stare at the Hen Bag.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">67%</div>
+        <div class="stat-desc">smile immediately upon seeing it.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12%</div>
+        <div class="stat-desc">attempt to feed it corn. We don't judge.</div>
+      </div>
+    </div>
+    <p class="footnote">*Research conducted by totally real chicken scientists in a fully accredited barn.</p>
+  </div>
 </section>
 
-<section>
+<section class="reviews">
+  <div class="reviews-inner">
+    <div class="section-label">Testimonials</div>
+    <h2>The Flock Has Spoken</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+        <div class="review-text">"People cross the street just to compliment my bag."</div>
+        <div class="reviewer">— Maria</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+        <div class="review-text">"I bought it ironically. Now I wear it everywhere."</div>
+        <div class="reviewer">— Josh</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+        <div class="review-text">"My grandma thought it was alive."</div>
+        <div class="reviewer">— Sophie</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Customer Reviews</h2>
-
-<p>⭐️⭐️⭐️⭐️⭐️  
-"People cross the street just to compliment my bag."  
-— Maria</p>
-
-<p>⭐️⭐️⭐️⭐️⭐️  
-"I bought it ironically. Now I wear it everywhere."  
-— Josh</p>
-
-<p>⭐️⭐️⭐️⭐️⭐️  
-"My grandma thought it was alive."  
-— Sophie</p>
-
+<!-- QUIZ -->
+<section class="quiz" id="quiz">
+  <div class="quiz-inner">
+    <div class="section-label">Personality Test</div>
+    <h2>What Type of <span>Rooster</span> Are You?</h2>
+    <div class="quiz-progress" id="quiz-progress">
+      <div class="quiz-progress-dot active" id="prog-0"></div>
+      <div class="quiz-progress-dot" id="prog-1"></div>
+      <div class="quiz-progress-dot" id="prog-2"></div>
+      <div class="quiz-progress-dot" id="prog-3"></div>
+      <div class="quiz-progress-dot" id="prog-4"></div>
+    </div>
+    <div class="quiz-question-wrap">
+      <div class="quiz-question active" id="q0">
+        <div class="quiz-q-text">It's Saturday morning. What are you doing?</div>
+        <div class="quiz-q-sub">Be honest. The chicken knows.</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(0,'F')"><span class="opt-letter">A</span><span>Curating my outfit for brunch. It takes at least 40 minutes.</span></button>
+          <button class="quiz-option" onclick="answer(0,'C')"><span class="opt-letter">B</span><span>Already started three projects. Abandoned two. Currently on the roof.</span></button>
+          <button class="quiz-option" onclick="answer(0,'R')"><span class="opt-letter">C</span><span>Sleeping in a field. Or a hammock. Somewhere outdoors and unscheduled.</span></button>
+          <button class="quiz-option" onclick="answer(0,'E')"><span class="opt-letter">D</span><span>Photographing my breakfast for the 'gram. Good lighting is non-negotiable.</span></button>
+        </div>
+      </div>
+      <div class="quiz-question" id="q1">
+        <div class="quiz-q-text">Someone compliments your Hen Bag. Your reaction?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(1,'F')"><span class="opt-letter">A</span><span>"Thank you, it really does elevate the whole look, doesn't it."</span></button>
+          <button class="quiz-option" onclick="answer(1,'C')"><span class="opt-letter">B</span><span>You honk at them like a goose. It's a reflex now.</span></button>
+          <button class="quiz-option" onclick="answer(1,'R')"><span class="opt-letter">C</span><span>"I found it outside a farm. Five stars."</span></button>
+          <button class="quiz-option" onclick="answer(1,'E')"><span class="opt-letter">D</span><span>You've already tagged them in the post you pre-scheduled.</span></button>
+        </div>
+      </div>
+      <div class="quiz-question" id="q2">
+        <div class="quiz-q-text">Your ideal hen-themed holiday destination?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(2,'F')"><span class="opt-letter">A</span><span>A boutique farm stay in Provence. Linen sheets. Lavender. Croissants.</span></button>
+          <button class="quiz-option" onclick="answer(2,'C')"><span class="opt-letter">B</span><span>Wherever has the most chaotic local market. I want sensory overload.</span></button>
+          <button class="quiz-option" onclick="answer(2,'R')"><span class="opt-letter">C</span><span>Off-grid yurt. No Wi-Fi. Just chickens and stars.</span></button>
+          <button class="quiz-option" onclick="answer(2,'E')"><span class="opt-letter">D</span><span>Somewhere extremely photogenic. Preferably with golden hour all day.</span></button>
+        </div>
+      </div>
+      <div class="quiz-question" id="q3">
+        <div class="quiz-q-text">Pick a sound that represents your inner chicken energy:</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(3,'F')"><span class="opt-letter">A</span><span>A single, elegant "bock." Measured. Intentional.</span></button>
+          <button class="quiz-option" onclick="answer(3,'C')"><span class="opt-letter">B</span><span>BAWK BAWK BAWK bawk bawk BAWK — it escalates unpredictably.</span></button>
+          <button class="quiz-option" onclick="answer(3,'R')"><span class="opt-letter">C</span><span>A distant, unbothered cluck from across the field.</span></button>
+          <button class="quiz-option" onclick="answer(3,'E')"><span class="opt-letter">D</span><span>The satisfying sound of a ring light clicking on.</span></button>
+        </div>
+      </div>
+      <div class="quiz-question" id="q4">
+        <div class="quiz-q-text">Finally — why did you buy the Hen Bag?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(4,'F')"><span class="opt-letter">A</span><span>It was the missing piece in my accessory collection. Obviously.</span></button>
+          <button class="quiz-option" onclick="answer(4,'C')"><span class="opt-letter">B</span><span>Someone dared me not to. That was all the motivation I needed.</span></button>
+          <button class="quiz-option" onclick="answer(4,'R')"><span class="opt-letter">C</span><span>It felt authentic. Like it was me but as a bag.</span></button>
+          <button class="quiz-option" onclick="answer(4,'E')"><span class="opt-letter">D</span><span>The content potential is ENORMOUS. My followers will love this.</span></button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-badge">
+          <span class="result-emoji" id="result-emoji">🐔</span>
+          <span id="result-type-label">Your type</span>
+        </div>
+        <div class="result-title" id="result-title">The Fashion Hen</div>
+        <div class="result-desc" id="result-desc"></div>
+        <div class="result-trait-list" id="result-traits"></div>
+        <div>
+          <button class="btn btn-dark" onclick="alert('Congrats! You are now officially a chicken.')">Buy The Hen Bag</button>
+        </div>
+        <button class="quiz-retake" onclick="resetQuiz()">↩ Retake quiz</button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
-
-<h2>Join The Flock</h2>
-
-<button onclick="alert('Congrats! You are now officially a chicken.')">
-Buy The Hen Bag
-</button>
-
-<p>© ChicHen Industries</p>
-
+  <div class="footer-inner">
+    <h2>Join The <span>Flock</span></h2>
+    <p class="sub">One bag. Infinite personality. Zero apologies to people who don't get it.</p>
+    <button class="btn btn-dark" onclick="alert('Congrats! You are now officially a chicken.')">Buy The Hen Bag</button>
+    <p class="footer-copy">© ChicHen Industries · All rights reserved to the hens</p>
+  </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+// SOUNDS
+// Drop .mp3 / .wav / .ogg files into the sounds/ folder,
+// then list their filenames in SOUND_FILES below.
+// ═══════════════════════════════════════════════
+const SOUND_FILES = [
+  "1.mp3",
+  "2.mp3",
+    "3.mp3",
+    "4.mp3",
+];
 
+const FALLBACK_MESSAGES = [
+  "Cluck!", "Bawk bawk!", "Eggcellent choice!",
+  "You have pleased the chicken.", "The hen approves.",
+  "The flock has been notified.",
+  "Your chickenness level: maximum."
+];
+
+let soundObjects = [];
+let currentAudio = null;
+
+function initSounds() {
+  const dot = document.getElementById('sound-dot');
+  const label = document.getElementById('sound-label');
+  if (SOUND_FILES.length === 0) {
+    dot.style.background = '#5c4a30';
+    label.textContent = 'Add .mp3/.wav files to sounds/ and list them in SOUND_FILES';
+    return;
+  }
+  soundObjects = SOUND_FILES.map(f => { const a = new Audio('sounds/' + f); a.preload = 'auto'; return a; });
+  dot.classList.add('active');
+  label.textContent = ""; //SOUND_FILES.length + ' sound' + (SOUND_FILES.length > 1 ? 's' : '') + ' loaded 🎵';
+}
+
+function cluck() {
+  if (soundObjects.length > 0) {
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    const s = soundObjects[Math.floor(Math.random() * soundObjects.length)];
+    currentAudio = s;
+    s.play().catch(showFallback);
+  } else { showFallback(); }
+}
+
+function showFallback() {
+  alert(FALLBACK_MESSAGES[Math.floor(Math.random() * FALLBACK_MESSAGES.length)]);
+}
+
+// ═══════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════
+const RESULTS = {
+  F: {
+    emoji: '👜', label: 'The Fashion Hen', title: 'The Fashion Hen',
+    desc: "You are the most stylish bird in the barn. Every outfit is considered. Every accessory intentional. The Hen Bag isn't a quirky purchase for you — it's a coordinated statement. You probably have a colour-coded wardrobe and strong opinions about hem lengths.",
+    traits: ['Exquisite taste', 'Accessory collector', 'Runway-ready', 'Sends "is this too much?" texts but already knows the answer is no']
+  },
+  C: {
+    emoji: '🌀', label: 'The Chaotic Rooster', title: 'The Chaotic Rooster',
+    desc: "You are pure barnyard energy. Loud, unpredictable, deeply committed to chaos. You bought the Hen Bag at 11pm on a Tuesday and told no one. Your friends are not surprised. You have never completed a thought in a straight line and the universe loves you for it.",
+    traits: ['Unhinged in the best way', 'Impulse buyer', 'Main character syndrome (deserved)', 'Does not read instructions']
+  },
+  R: {
+    emoji: '🌿', label: 'The Free-Range Rebel', title: 'The Free-Range Rebel',
+    desc: "You refuse to be confined. Rules are suggestions. Fences are aesthetic choices. You carry the Hen Bag because it's real, it's weird, and it doesn't ask anything of you. You probably own at least one piece of clothing that was a curtain.",
+    traits: ['Unbothered', 'Anti-trend trendsetter', 'Owns a compost bin', 'Has opinions about foraging']
+  },
+  E: {
+    emoji: '📸', label: 'The Eggfluencer', title: 'The Eggfluencer',
+    desc: "Content is your calling. You didn't just buy the Hen Bag — you conceptualised a three-part series around it. Your lighting is always good. Your captions are either profound or completely unhinged, and your followers love both equally. The hen approves of your metrics.",
+    traits: ['Chronically online', 'Golden hour connoisseur', 'Batch-shoots content', 'Replies to comments in chicken puns']
+  }
+};
+
+let scores = {F:0, C:0, R:0, E:0};
+let currentQ = 0;
+const TOTAL = 5;
+
+function answer(qIndex, type) {
+  scores[type]++;
+  currentQ++;
+  document.getElementById('prog-' + qIndex).classList.remove('active');
+  document.getElementById('prog-' + qIndex).classList.add('done');
+  document.getElementById('q' + qIndex).classList.remove('active');
+  if (currentQ < TOTAL) {
+    document.getElementById('q' + currentQ).classList.add('active');
+    document.getElementById('prog-' + currentQ).classList.add('active');
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const winner = Object.entries(scores).reduce((a,b) => a[1] >= b[1] ? a : b)[0];
+  const r = RESULTS[winner];
+  document.getElementById('result-emoji').textContent = r.emoji;
+  document.getElementById('result-type-label').textContent = r.label;
+  document.getElementById('result-title').textContent = r.title;
+  document.getElementById('result-desc').textContent = r.desc;
+  const tl = document.getElementById('result-traits');
+  tl.innerHTML = '';
+  r.traits.forEach(t => { const s = document.createElement('span'); s.className = 'result-trait'; s.textContent = t; tl.appendChild(s); });
+  for (let i = 0; i < TOTAL; i++) { const d = document.getElementById('prog-'+i); d.classList.remove('active'); d.classList.add('done'); }
+  document.getElementById('quiz-result').classList.add('active');
+}
+
+function resetQuiz() {
+  scores = {F:0, C:0, R:0, E:0};
+  currentQ = 0;
+  document.getElementById('quiz-result').classList.remove('active');
+  for (let i = 0; i < TOTAL; i++) {
+    const q = document.getElementById('q'+i); q.classList.remove('active');
+    const d = document.getElementById('prog-'+i); d.classList.remove('done','active');
+  }
+  document.getElementById('q0').classList.add('active');
+  document.getElementById('prog-0').classList.add('active');
+}
+
+initSounds();
+</script>
 </body>
 </html>
